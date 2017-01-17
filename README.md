@@ -5,9 +5,13 @@
 ###AssIstant
 - Dashboard for data
 - Data handling
+- Detecting different happenings (ML?):
+  - Fall
+  - Something wrong with HR, temp
+  - Light conditions
 
 ###Smart diaper
-- Detect moist
+- Detect moisture
 - Detect fall
 
 ###Smart band
