@@ -18,9 +18,3 @@
 - Monitor HR
 - Monitor temp (person and room)
 - Light condition
-
-##TODO
-- Gather data
-- Start creating dashboard
-- Detecting different cases
-- Create prototypes
