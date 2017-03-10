@@ -1,0 +1,3 @@
+LED1.reset();
+LED2.reset();
+LED3.reset();

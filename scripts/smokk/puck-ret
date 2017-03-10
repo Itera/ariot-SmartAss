@@ -1,0 +1,93 @@
+var ow = new OneWire(D1);
+var data = 0;
+var sensor;
+var led = false;
+var on = true;
+
+function connect_sensor(){
+  return require("DS18B20").connect(ow);
+}
+
+function retrieve_data(){
+  led = !led;
+
+  if(sensor !== undefined){
+    data = sensor.getTemp();
+    LED1.reset();
+    LED2.write(led);
+  }else{
+    LED2.reset();
+    LED1.write(led);
+  }
+}
+
+function update_service(){
+  NRF.updateServices({
+    "e00ef22e-909e-4621-957d-9b1710e5fb17" : {
+      "55c24622-280a-45c7-a86b-1b1408713f74" : {
+        value : data
+      }
+    }
+  });
+}
+
+function run(){
+    retrieve_data();
+
+    if(data === null){
+      init();
+    }else{
+      update_service();
+    }
+}
+
+function init(){
+  setInterval(function() {
+    run();
+  }, 1000);
+
+  try {
+    sensor = connect_sensor();
+  }catch(err) {
+    sensor = undefined;
+    data = 0;
+  }
+}
+
+function turn_off(){
+  clearInterval();
+  sensor = undefined;
+  data = 0;
+  update_service();
+  LED1.reset();
+  LED2.reset();
+  LED3.reset();
+}
+
+init();
+
+setWatch(function() {
+  if(on){
+    turn_off();
+  }else{
+    init();
+  }
+  on = !on;
+}, BTN, {edge:"rising", debounce:50, repeat:true});
+
+NRF.setServices({
+  "e00ef22e-909e-4621-957d-9b1710e5fb17" : {
+    "55c24622-280a-45c7-a86b-1b1408713f74" : {
+      value : data,
+      readable : true
+    }
+  }
+});
+
+NRF.on('connect', function(addr) {
+  LED3.set();
+});
+
+NRF.on('disconnect', function() {
+  LED3.reset();
+});

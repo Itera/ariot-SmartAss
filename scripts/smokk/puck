@@ -1,0 +1,54 @@
+var devices;
+var dev;
+
+setWatch(function() {
+  console.log("Battery: " + Puck.getBatteryPercentage() + " %");
+}, BTN, {edge:"rising", debounce:50, repeat:true});
+
+function read(id){
+  console.log("connecting..");
+
+  var gatt;
+
+  NRF.connect(id).then(function(g) {
+    gatt = g;
+    return gatt.getPrimaryService("e00ef22e-909e-4621-957d-9b1710e5fb17");
+  }).then(function(service) {
+    return service.getCharacteristic("55c24622-280a-45c7-a86b-1b1408713f74");
+  }).then(function(characteristic) {
+    return characteristic.readValue();
+  }).then(function(data) {
+    console.log("Output: " + JSON.stringify(data));
+    gatt.disconnect();
+  }).catch(function(err) {
+    gatt.disconnect();
+    console.log("Error: " + err);
+  });
+}
+
+function get_puck(d){
+  for (i = 0; i < d.length; i++) {
+    if(d[i].name === "Puck.js b70c"){
+      return d[i];
+    }
+  }
+}
+
+function scan_devices(){
+  NRF.findDevices(function(d) {
+    devices = d;
+    dev = get_puck(d);
+  }, 3000); //scans for 1 second
+}
+
+function init(){
+  clearInterval();
+
+  try {
+    scan_devices();
+  }catch(err) {
+    console.log("Error: " + err.msg);
+  }
+}
+
+init();
