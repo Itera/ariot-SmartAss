@@ -1,5 +1,16 @@
-setInterval(function() {
+/*setInterval(function() {
   NRF.setAdvertising({
-    0x1809 : [Math.round(E.getTemperature())]
+    0x1809 : [26.1],
   });
-}, 3000);
+}, 10000);
+*/
+
+NRF.setAdvertising(
+  {
+    0x1809 : [26.1]
+  },{
+    name: "Karl",
+    showName: true,
+    discoverable: true,
+    interval: 100
+  });
