@@ -31,10 +31,12 @@
 #define LO_PLUSS D3
 #define LO_MNUS D2
 #define ALERT_BUTTON D1
+#define VIAGRA RISING
 
 const char* ssid = "wlankonferanse";
 const char* password = "Voksen2013";
 const char* mqtt_server = "10.59.2.228";
+volatile bool alertTriggered = false;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -46,6 +48,8 @@ void setup() {
   
   pinMode(LO_PLUSS, INPUT); // Setup for leads off detection LO +
   pinMode(LO_MNUS, INPUT); // Setup for leads off detection LO -
+  pinMode(ALERT_BUTTON, INPUT);
+  attachInterrupt(digitalPinToInterrupt(ALERT_BUTTON), isr_alert, VIAGRA);
 
   setupWifi();
   client.setServer(mqtt_server, 1883);
@@ -57,13 +61,21 @@ void loop() {
   }
   client.loop();
 
+  if(alertTriggered) {
+    Serial.println("Alert button pushed, sending message");
+    client.publish("nodemcu/alert", "Alert button has been pushed");
+    alertTriggered = false;
+  }
+
   if ((digitalRead(LO_PLUSS) == 1) || (digitalRead(LO_MNUS) == 1)) {
+    Serial.println("!");
     client.publish("nodemcu/ecg", "!");
   }
   else {
     // send the value of analog input 0:
     char* str = new char[8];
     sprintf(str, "%d", analogRead(A0));
+    Serial.println(str);
     client.publish("nodemcu/ecg", str);
   }
   //Wait for a bit to keep serial data from saturating
@@ -104,4 +116,9 @@ void reconnect() {
     }
   }
 }
+
+void isr_alert() {
+  alertTriggered = true;
+}
+
 
