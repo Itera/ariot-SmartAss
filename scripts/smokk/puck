@@ -28,7 +28,7 @@ function read(id){
 
 function get_puck(d){
   for (i = 0; i < d.length; i++) {
-    if(d[i].name === "Puck.js 1ee1"){
+    if(d[i].name === "Puck.js b70c"){
       return d[i];
     }
   }

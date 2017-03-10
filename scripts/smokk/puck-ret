@@ -2,6 +2,7 @@ var ow = new OneWire(D1);
 var data = 0;
 var sensor;
 var led = false;
+var on = true;
 
 function connect_sensor(){
   return require("DS18B20").connect(ow);
@@ -30,7 +31,21 @@ function update_service(){
   });
 }
 
+function run(){
+    retrieve_data();
+
+    if(data === null){
+      init();
+    }else{
+      update_service();
+    }
+}
+
 function init(){
+  setInterval(function() {
+    run();
+  }, 1000);
+
   try {
     sensor = connect_sensor();
   }catch(err) {
@@ -39,20 +54,25 @@ function init(){
   }
 }
 
+function turn_off(){
+  clearInterval();
+  sensor = undefined;
+  data = 0;
+  update_service();
+  LED1.reset();
+  LED2.reset();
+  LED3.reset();
+}
+
 init();
 
-setInterval(function() {
-  retrieve_data();
-
-  if(data === null){
-    init();
-  }else{
-    update_service();
-  }
-}, 1000);
-
 setWatch(function() {
-  init();
+  if(on){
+    turn_off();
+  }else{
+    init();
+  }
+  on = !on;
 }, BTN, {edge:"rising", debounce:50, repeat:true});
 
 NRF.setServices({
