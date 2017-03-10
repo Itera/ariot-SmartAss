@@ -74,12 +74,14 @@ void loop() {
   else {
     // send the value of analog input 0:
     char* str = new char[8];
-    sprintf(str, "%d", analogRead(A0));
-    Serial.println(str);
+    int val = analogRead(A0);
+    Serial.println(val);
+    sprintf(str, "%d", val);
     client.publish("nodemcu/ecg", str);
   }
+  
   //Wait for a bit to keep serial data from saturating
-  delay(1);
+  assembly_delay(1);
 }
 
 void setupWifi() {
@@ -107,7 +109,7 @@ void reconnect() {
     if (client.connect("keynote-client")) {
       Serial.println("connected");
 
-      client.publish("nodemcu/ecg-status", "Connected");      
+      client.publish("nodemcu/status", "Connected");      
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -116,6 +118,18 @@ void reconnect() {
     }
   }
 }
+
+static inline unsigned get_ticks()
+{
+ unsigned r;
+ asm volatile ("rsr %0, ccount" : "=r"(r));
+ return r;
+}
+
+void assembly_delay(unsigned mega_ticks){
+ unsigned start = get_ticks();
+ while(get_ticks() < start + (mega_ticks * 1000000)) {}
+}//80MHz: ticks -> 12.5 ns, kilo_ticks -> 12.5 us, mega_ticks -> 12.5 ms
 
 void isr_alert() {
   alertTriggered = true;
