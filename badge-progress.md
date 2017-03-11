@@ -10,7 +10,7 @@
 - First brunch - DONE
 - Force field (security) - ??
 - HUD (dashboard) - DONE
-- I fixed it! - PENDING
+- I fixed it! - DONE
 - Instant - PENDING
 - It's alive! - NO
 - Make love, not war (open source) - PENDING
