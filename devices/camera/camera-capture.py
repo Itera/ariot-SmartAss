@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from picamera import PiCamera
-import numpy as np
+# import numpy as np
 from time import sleep
 from PIL import Image
 

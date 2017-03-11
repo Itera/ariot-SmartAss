@@ -13,5 +13,3 @@ def capture_image(img):
     camera.stop_preview()
 
 capture_image(image)
-
-print "image saved to : " + image
