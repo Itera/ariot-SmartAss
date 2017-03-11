@@ -6,7 +6,7 @@ from time import sleep
 
 camera = PiCamera()
 
-def capture_image(img):
+def capture_image():
     camera.start_preview()
     camera.resolution = (320, 240)
     camera.framerate = 24
@@ -15,3 +15,5 @@ def capture_image(img):
     camera.capture(output, 'rgb')
     camera.stop_preview()
     return output
+
+capture_image()
