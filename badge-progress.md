@@ -24,7 +24,7 @@
 - Solder soldier - DONE
 - Three dimensions - DONE
 - Wear me! - DONE
-- This is intense! (5 sensors) - PENDING
-- Leave no one behind (help other team) - PENDING (judge borrowed usb cable, knowiot borrowed tools)
+- This is intense! (5 sensors) - DONE
+- Leave no one behind (help other team) - DONE (judge borrowed usb cable, knowiot borrowed tools)
 - Savvy (robust solution) - ??
 - Under construction - PENDING
