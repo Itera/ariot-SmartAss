@@ -16,4 +16,4 @@ def capture_image():
     camera.stop_preview()
     return output
 
-capture_image()
+return capture_image()
