@@ -3,6 +3,7 @@ var sensor;
 var led = false;
 var on = true;
 var id = "Pacifier 2.0";
+var pre_data;
 
 function connect_sensor(){
   try {
@@ -41,7 +42,10 @@ function run(){
   if(data === null){
     connect_sensor();
   }else{
-    advertise(data);
+    if(pre_data !== data){
+      advertise(data);
+    }
+    pre_data = data;
   }
 }
 
