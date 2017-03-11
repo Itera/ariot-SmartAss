@@ -11,17 +11,16 @@ image = "/home/pi/ariot-SmartAss/devices/camera/assets/image.jpg"
 def capture_image(img):
     camera.start_preview()
     sleep(2)
-    camera.capture(img)
     im = Image.open(img)
+    camera.capture(im)
     camera.stop_preview()
-    return im
 
-return capture_image(image)
+capture_image(image)
 
 # def capture_image():
 #     camera.start_preview()
 #     camera.resolution = (320, 240)
-#     camera.framerate = 24
+#     camera.framerate = 24a
 #     sleep(2)
 #     output = np.empty((240, 320, 3), dtype=np.uint8)
 #     camera.capture(output, 'rgb')
