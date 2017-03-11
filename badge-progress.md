@@ -1,3 +1,5 @@
+# Badge progress
+
 [Description here] - DONE
 AckWard - PENDING
 Attack of the drones - NO
@@ -6,7 +8,7 @@ Cloud city - DONE
 Dr. Who (health) - PENDING
 Eyes wide shutter - PENDING
 First brunch - DONE
-Force field (security) - ??
+Force field (security) - ?? (app, dashboard)
 HUD (dashboard) - PENDING
 I fixed it! - PENDING
 Instant - PENDING
@@ -23,10 +25,6 @@ Solder soldier - DONE
 Three dimensions - DONE
 Wear me! - DONE
 This is intense! (5 sensors) - PENDING
-Leave no one behind (help other team) - ??
+Leave no one behind (help other team) - ?? (judge borrowed usb cable, knowiot borrowed tools)
 Savvy (robust solution) - ??
 Under construction - PENDING
-
-
-
-
