@@ -1,0 +1,88 @@
+var ow = new OneWire(D1);
+var sensor;
+var led = false;
+var on = true;
+var id = "Pacifier 2.0";
+
+function connect_sensor(){
+  try {
+    sensor = require("DS18B20").connect(ow);
+  }catch(err) {
+    sensor = undefined;
+  }
+}
+
+function advertise(val){
+  NRF.setAdvertising(
+  {
+    0x1809 : [val]
+  },{
+    name: id,
+    showName: true,
+    interval: 100
+  });
+}
+
+function retrieve_data(){
+  led = !led;
+
+  var temp = null;
+
+  if(sensor !== undefined){
+    temp = sensor.getTemp();
+  }
+
+  if(temp === null){
+    LED2.reset();
+    LED1.write(led);
+  }else{
+    LED1.reset();
+    LED2.write(led);
+  }
+
+  return temp;
+}
+
+function run(){
+  var data = retrieve_data();
+
+  if(data === null || sensor === undefined){
+    connect_sensor();
+  }else{
+    advertise(data);
+  }
+}
+
+function init(){
+  setInterval(function() {
+    run();
+  }, 1000);
+}
+
+init();
+
+function turn_off(){
+  clearInterval();
+  sensor = undefined;
+  LED1.reset();
+  LED2.reset();
+  LED3.reset();
+  console.log("Battery: " + Puck.getBatteryPercentage() + " %");
+}
+
+setWatch(function() {
+  if(on){
+    turn_off();
+  }else{
+    init();
+  }
+  on = !on;
+}, BTN, {edge:"rising", debounce:50, repeat:true});
+
+NRF.on('connect', function(addr) {
+  LED3.set();
+});
+
+NRF.on('disconnect', function() {
+  LED3.reset();
+});
