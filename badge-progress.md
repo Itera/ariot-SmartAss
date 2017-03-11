@@ -5,11 +5,11 @@
 - Attack of the drones - NO
 - Babelfish (5 languages) - PENDING
 - Cloud city - DONE
-- Dr. Who (health) - PENDING
+- Dr. Who (health) - DONE
 - Eyes wide shutter - PENDING
 - First brunch - DONE
 - Force field (security) - ??
-- HUD (dashboard) - PENDING
+- HUD (dashboard) - DONE
 - I fixed it! - PENDING
 - Instant - PENDING
 - It's alive! - NO
