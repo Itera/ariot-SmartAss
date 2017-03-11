@@ -26,5 +26,5 @@
 - Wear me! - DONE
 - This is intense! (5 sensors) - DONE
 - Leave no one behind (help other team) - DONE (judge borrowed usb cable, knowiot borrowed tools)
-- Savvy (robust solution) - ??
+- Savvy (robust solution) - PENDING
 - Under construction - PENDING
