@@ -14,7 +14,7 @@
 - Instant - DONE
 - It's alive! - NO
 - Make love, not war (open source) - DONE
-- Native - PENDING
+- Native - DONE
 - Shiny pixels - PENDING (app, dashboard)
 - SmartCamp - DONE
 - Smooth object - DONE
