@@ -15,7 +15,7 @@
 - It's alive! - NO
 - Make love, not war (open source) - DONE
 - Native - PENDING
-- Shiny pixels - ?? (app, dashboard)
+- Shiny pixels - PENDING (app, dashboard)
 - SmartCamp - DONE
 - Smooth object - DONE
 - The analyst - PENDING
