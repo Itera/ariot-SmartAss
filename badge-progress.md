@@ -1,0 +1,30 @@
+# Badge progress
+
+- [Description here] - DONE
+- AckWard - PENDING
+- Attack of the drones - NO
+- Babelfish (5 languages) - PENDING
+- Cloud city - DONE
+- Dr. Who (health) - DONE
+- Eyes wide shutter - PENDING
+- First brunch - DONE
+- Force field (security) - ??
+- HUD (dashboard) - DONE
+- I fixed it! - DONE
+- Instant - PENDING
+- It's alive! - NO
+- Make love, not war (open source) - PENDING
+- Native - PENDING
+- Shiny pixels - ?? (app, dashboard)
+- SmartCamp - DONE
+- Smooth object - DONE
+- The analyst - PENDING
+- The assembler - PENDING
+- The presenter - DONE
+- Solder soldier - DONE
+- Three dimensions - DONE
+- Wear me! - DONE
+- This is intense! (5 sensors) - PENDING
+- Leave no one behind (help other team) - ?? (judge borrowed usb cable, knowiot borrowed tools)
+- Savvy (robust solution) - ??
+- Under construction - PENDING

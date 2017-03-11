@@ -1,0 +1,37 @@
+var led = false;
+var on = true;
+
+function alarma(){
+  setInterval(function() {
+    LED1.write(led);
+    led = !led;
+  }, 300);
+}
+
+setWatch(function() {
+  if(on){
+    alarma();
+  }else{
+    clearInterval();
+    LED1.reset();
+    LED3.reset();
+  }
+  on = !on;
+}, BTN, {edge:"rising", debounce:50, repeat:true});
+
+NRF.setServices({
+  "e00ef22e-909e-4621-957d-9b1710e5fb17" : {
+    "55c24622-280a-45c7-a86b-1b1408713f74" : {
+      value : "ALARMA",
+      readable : true
+    }
+  }
+});
+
+NRF.on('connect', function(addr) {
+  LED3.set();
+});
+
+NRF.on('disconnect', function() {
+  LED3.reset();
+});

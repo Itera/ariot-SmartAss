@@ -1,0 +1,64 @@
+var pin = D2;
+var on = true;
+var led = false;
+var id = "Diaper 2.0";
+
+function advertise(val){
+  NRF.setAdvertising(
+  {
+    0x1809 : [val]
+  },{
+    name: id,
+    showName: true
+  });
+}
+
+function retrieve_data(){
+  led = !led;
+
+  LED2.write(led);
+
+  return analogRead(pin);
+}
+
+function run(){
+  var data = retrieve_data();
+
+  if(data < 0){
+    advertise(1);
+  }else{
+    advertise(0);
+  }
+}
+
+function init(){
+  setInterval(function() {
+    run();
+  }, 1000);
+}
+
+function turn_off(){
+  clearInterval();
+  LED2.reset();
+  LED3.reset();
+  console.log("Battery: " + Puck.getBatteryPercentage() + " %");
+}
+
+init();
+
+setWatch(function() {
+  if(on){
+    turn_off();
+  }else{
+    init();
+  }
+  on = !on;
+}, BTN, {edge:"rising", debounce:50, repeat:true});
+
+NRF.on('connect', function(addr) {
+  LED3.set();
+});
+
+NRF.on('disconnect', function() {
+  LED3.reset();
+});

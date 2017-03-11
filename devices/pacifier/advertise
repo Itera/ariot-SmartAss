@@ -1,0 +1,16 @@
+/*setInterval(function() {
+  NRF.setAdvertising({
+    0x1809 : [26.1],
+  });
+}, 10000);
+*/
+
+NRF.setAdvertising(
+  {
+    0x1809 : [26.1]
+  },{
+    name: "Karl",
+    showName: true,
+    discoverable: true,
+    interval: 100
+  });

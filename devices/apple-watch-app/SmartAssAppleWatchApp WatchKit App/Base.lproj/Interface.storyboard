@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11508"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SmartAssAppleWatchApp_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="center" verticalAlignment="center" baselineAdjustment="alignCenters" numberOfLines="5" id="CgA-SY-vqg"/>
+                        <label alignment="center" text="Loading..." id="wW7-qy-fj0"/>
+                        <label height="59" alignment="center" verticalAlignment="center" text="👶🏼👶🏼👶🏼" id="KMZ-br-Avs"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Camera 📸" id="dac-aO-HtZ">
+                            <connections>
+                                <action selector="ActionCameraButton" destination="AgC-eL-Hgc" id="Uxb-92-f1S"/>
+                            </connections>
+                        </button>
+                        <imageView alignment="center" verticalAlignment="bottom" id="jTE-UY-G2a"/>
+                    </items>
+                    <connections>
+                        <outlet property="diaperLabel" destination="KMZ-br-Avs" id="mTk-vI-l4U"/>
+                        <outlet property="showImage" destination="jTE-UY-G2a" id="V08-my-h4y"/>
+                        <outlet property="tempLabel" destination="wW7-qy-fj0" id="nZl-aH-vys"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="25" y="35"/>
+        </scene>
+    </scenes>
+</document>

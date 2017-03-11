@@ -1,0 +1,81 @@
+var ow = new OneWire(D1);
+var sensor;
+var led = false;
+var on = true;
+
+function connect_sensor(){
+  return require("DS18B20").connect(ow);
+}
+
+function retrieve_data(){
+  led = !led;
+
+  if(sensor !== undefined){
+    LED1.reset();
+    LED2.write(led);
+    return sensor.getTemp();
+  }
+
+  LED2.reset();
+  LED1.write(led);
+  return 0;
+}
+
+function advertise(val){
+  NRF.setAdvertising(
+  {
+    0x1809 : [val]
+  },{
+    name: "Pacifier 2.0",
+    showName: true
+  });
+}
+
+function run(){
+    var data = retrieve_data();
+
+    if(data === null){
+      init();
+    }else{
+      advertise(data);
+    }
+}
+
+function init(){
+  setInterval(function() {
+    run();
+  }, 1000);
+
+  try {
+    sensor = connect_sensor();
+  }catch(err) {
+    sensor = undefined;
+  }
+}
+
+function turn_off(){
+  clearInterval();
+  sensor = undefined;
+  LED1.reset();
+  LED2.reset();
+  LED3.reset();
+}
+
+init();
+
+setWatch(function() {
+  if(on){
+    turn_off();
+  }else{
+    init();
+  }
+  on = !on;
+}, BTN, {edge:"rising", debounce:50, repeat:true});
+
+NRF.on('connect', function(addr) {
+  LED3.set();
+});
+
+NRF.on('disconnect', function() {
+  LED3.reset();
+});
