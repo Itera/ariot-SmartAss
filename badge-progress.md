@@ -1,25 +1,25 @@
 # Badge progress
 
 - [Description here] - DONE
-- AckWard - PENDING
+- AckWard - DONE
 - Attack of the drones - NO
-- Babelfish (5 languages) - PENDING
+- Babelfish (5 languages) - DONE
 - Cloud city - DONE
 - Dr. Who (health) - DONE
-- Eyes wide shutter - PENDING
+- Eyes wide shutter - DONE
 - First brunch - DONE
 - Force field (security) - ??
 - HUD (dashboard) - DONE
 - I fixed it! - DONE
 - Instant - PENDING
 - It's alive! - NO
-- Make love, not war (open source) - PENDING
+- Make love, not war (open source) - DONE
 - Native - PENDING
 - Shiny pixels - ?? (app, dashboard)
 - SmartCamp - DONE
 - Smooth object - DONE
 - The analyst - PENDING
-- The assembler - PENDING
+- The assembler - DONE
 - The presenter - DONE
 - Solder soldier - DONE
 - Three dimensions - DONE
