@@ -1,30 +1,19 @@
 #!/usr/bin/python
 
 from picamera import PiCamera
-# import numpy as np
-from time import sleep
-from PIL import Image
 
+resolutionX = 320
+resolutionY = 240
+
+# buffer
+filePath = "/home/pi/ariot-SmartAss/devices/camera/assets/image"
+fileType = "jpeg"
+picfile = open(filePath, 'wb')
+
+# take the photo
 camera = PiCamera()
-image = "/home/pi/ariot-SmartAss/devices/camera/assets/image.jpg"
+camera.resolution = (resolutionX, resolutionY)
+camera.capture(picfile, fileType)
 
-def capture_image(img):
-    camera.start_preview()
-    sleep(2)
-    im = Image.open(img)
-    camera.capture(im)
-    camera.stop_preview()
-
-capture_image(image)
-
-# def capture_image():
-#     camera.start_preview()
-#     camera.resolution = (320, 240)
-#     camera.framerate = 24a
-#     sleep(2)
-#     output = np.empty((240, 320, 3), dtype=np.uint8)
-#     camera.capture(output, 'rgb')
-#     camera.stop_preview()
-#     return output
-
-# return capture_image()
+# flush the buffer
+picfile.close()

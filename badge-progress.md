@@ -11,7 +11,7 @@
 - Force field (security) - ??
 - HUD (dashboard) - DONE
 - I fixed it! - DONE
-- Instant - PENDING
+- Instant - DONE
 - It's alive! - NO
 - Make love, not war (open source) - DONE
 - Native - PENDING
