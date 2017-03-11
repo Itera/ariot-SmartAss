@@ -8,7 +8,7 @@
 - Dr. Who (health) - DONE
 - Eyes wide shutter - DONE
 - First brunch - DONE
-- Force field (security) - ??
+- Force field (security) - PENDING
 - HUD (dashboard) - DONE
 - I fixed it! - DONE
 - Instant - DONE
